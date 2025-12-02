@@ -1,0 +1,26 @@
+Práctica #1: El Becario Peligroso.
+
+El Escenario
+Acabas de contratar a un tal "Pepito" (o como quieras llamarlo, pero usa variables, no seas rústico). Pepito es un peligro andante, así que solo puede mirar los buckets de S3, pero bajo ninguna circunstancia puede borrar ni crear nada. Además, para no gestionar usuarios uno a uno como un cavernícola, debes meterlo en un grupo.
+
+Tu Misión (si decides aceptarla y no correr a la consola web)
+Escribe el código HCL (main.tf, variables.tf, etc.) para lograr lo siguiente:
+
+Proveedor: Configura AWS (usa la región us-east-1 por defecto, pero hazlo configurable).
+
+Recurso Usuario: Crea un usuario de IAM llamado becario_cloud.
+
+Recurso Grupo: Crea un grupo de IAM llamado auditores_s3.
+
+Membresía: Mete al becario_cloud dentro del grupo auditores_s3.
+
+Nota crítica: Investiga la diferencia entre aws_iam_group_membership y aws_iam_user_group_membership. Si usas la incorrecta y ya tenía otros grupos, lo vas a sacar de ellos. Para este ejercicio usa la que creas más segura (y defiéndelo).
+
+Policy Attachment: Asocia la política gestionada (Managed Policy) de AWS llamada AmazonS3ReadOnlyAccess al grupo (no al usuario, no seas sucio).
+
+Tip: Necesitarás el ARN de la política. No lo inventes, búscalo o usa un data source.
+
+Reglas
+PROHIBIDO poner las access_key y secret_key en el código (provider). Si veo eso, cancelamos la mentoría. Usa variables de entorno o el perfil de AWS CLI (~/.aws/credentials).
+
+Usa variables para el nombre del usuario.
